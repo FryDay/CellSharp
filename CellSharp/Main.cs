@@ -7,6 +7,10 @@ namespace CellSharp
 {
     class Main
     {
+        #region "Properties"
 
+
+
+        #endregion
     }
 }

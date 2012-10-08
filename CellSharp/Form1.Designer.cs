@@ -28,66 +28,66 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.pix_Grid = new System.Windows.Forms.PictureBox();
+            this.btn_Run = new System.Windows.Forms.Button();
+            this.btn_Stop = new System.Windows.Forms.Button();
+            this.txt_Iterations = new System.Windows.Forms.NumericUpDown();
             this.lbl_Iterations = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.chk_DrawGrid = new System.Windows.Forms.CheckBox();
+            this.sldr_Speed = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            this.txt_BirthMin = new System.Windows.Forms.NumericUpDown();
+            this.txt_BirthMax = new System.Windows.Forms.NumericUpDown();
+            this.txt_SurvivalMin = new System.Windows.Forms.NumericUpDown();
+            this.txt_SurvivalMax = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            this.chk_IncludeSelf = new System.Windows.Forms.CheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pix_Grid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_Iterations)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sldr_Speed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_BirthMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_BirthMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SurvivalMin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SurvivalMax)).BeginInit();
             this.SuspendLayout();
             // 
-            // pictureBox1
+            // pix_Grid
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(551, 551);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pix_Grid.Location = new System.Drawing.Point(12, 12);
+            this.pix_Grid.Name = "pix_Grid";
+            this.pix_Grid.Size = new System.Drawing.Size(551, 551);
+            this.pix_Grid.TabIndex = 0;
+            this.pix_Grid.TabStop = false;
             // 
-            // button1
+            // btn_Run
             // 
-            this.button1.Location = new System.Drawing.Point(488, 569);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Run";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_Run.Location = new System.Drawing.Point(488, 569);
+            this.btn_Run.Name = "btn_Run";
+            this.btn_Run.Size = new System.Drawing.Size(75, 23);
+            this.btn_Run.TabIndex = 1;
+            this.btn_Run.Text = "Run";
+            this.btn_Run.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btn_Stop
             // 
-            this.button2.Location = new System.Drawing.Point(407, 569);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Stop";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_Stop.Location = new System.Drawing.Point(407, 569);
+            this.btn_Stop.Name = "btn_Stop";
+            this.btn_Stop.Size = new System.Drawing.Size(75, 23);
+            this.btn_Stop.TabIndex = 2;
+            this.btn_Stop.Text = "Stop";
+            this.btn_Stop.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // txt_Iterations
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(508, 598);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(55, 20);
-            this.numericUpDown1.TabIndex = 3;
+            this.txt_Iterations.Location = new System.Drawing.Point(508, 598);
+            this.txt_Iterations.Name = "txt_Iterations";
+            this.txt_Iterations.Size = new System.Drawing.Size(55, 20);
+            this.txt_Iterations.TabIndex = 3;
             // 
             // lbl_Iterations
             // 
@@ -98,32 +98,32 @@
             this.lbl_Iterations.TabIndex = 4;
             this.lbl_Iterations.Text = "Iterations (0 = Infinite)";
             // 
-            // checkBox1
+            // chk_DrawGrid
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Location = new System.Drawing.Point(484, 624);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(79, 17);
-            this.checkBox1.TabIndex = 5;
-            this.checkBox1.Text = "Draw Grid?";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.chk_DrawGrid.AutoSize = true;
+            this.chk_DrawGrid.Checked = true;
+            this.chk_DrawGrid.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_DrawGrid.Location = new System.Drawing.Point(484, 624);
+            this.chk_DrawGrid.Name = "chk_DrawGrid";
+            this.chk_DrawGrid.Size = new System.Drawing.Size(79, 17);
+            this.chk_DrawGrid.TabIndex = 5;
+            this.chk_DrawGrid.Text = "Draw Grid?";
+            this.chk_DrawGrid.UseVisualStyleBackColor = true;
             // 
-            // trackBar1
+            // sldr_Speed
             // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(292, 596);
-            this.trackBar1.Maximum = 2;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(104, 45);
-            this.trackBar1.TabIndex = 6;
-            this.trackBar1.Value = 1;
+            this.sldr_Speed.LargeChange = 1;
+            this.sldr_Speed.Location = new System.Drawing.Point(259, 598);
+            this.sldr_Speed.Maximum = 2;
+            this.sldr_Speed.Name = "sldr_Speed";
+            this.sldr_Speed.Size = new System.Drawing.Size(104, 45);
+            this.sldr_Speed.TabIndex = 6;
+            this.sldr_Speed.Value = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(289, 647);
+            this.label1.Location = new System.Drawing.Point(256, 628);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(30, 13);
             this.label1.TabIndex = 7;
@@ -132,7 +132,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(369, 647);
+            this.label2.Location = new System.Drawing.Point(336, 628);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(27, 13);
             this.label2.TabIndex = 8;
@@ -141,7 +141,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(327, 574);
+            this.label3.Location = new System.Drawing.Point(292, 577);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 9;
@@ -165,33 +165,53 @@
             this.label5.TabIndex = 11;
             this.label5.Text = "Survivial Range:";
             // 
-            // numericUpDown2
+            // txt_BirthMin
             // 
-            this.numericUpDown2.Location = new System.Drawing.Point(110, 577);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown2.TabIndex = 12;
+            this.txt_BirthMin.Location = new System.Drawing.Point(110, 577);
+            this.txt_BirthMin.Name = "txt_BirthMin";
+            this.txt_BirthMin.Size = new System.Drawing.Size(40, 20);
+            this.txt_BirthMin.TabIndex = 12;
+            this.txt_BirthMin.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown3
+            // txt_BirthMax
             // 
-            this.numericUpDown3.Location = new System.Drawing.Point(178, 577);
-            this.numericUpDown3.Name = "numericUpDown3";
-            this.numericUpDown3.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown3.TabIndex = 13;
+            this.txt_BirthMax.Location = new System.Drawing.Point(178, 577);
+            this.txt_BirthMax.Name = "txt_BirthMax";
+            this.txt_BirthMax.Size = new System.Drawing.Size(40, 20);
+            this.txt_BirthMax.TabIndex = 13;
+            this.txt_BirthMax.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown4
+            // txt_SurvivalMin
             // 
-            this.numericUpDown4.Location = new System.Drawing.Point(110, 603);
-            this.numericUpDown4.Name = "numericUpDown4";
-            this.numericUpDown4.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown4.TabIndex = 14;
+            this.txt_SurvivalMin.Location = new System.Drawing.Point(110, 603);
+            this.txt_SurvivalMin.Name = "txt_SurvivalMin";
+            this.txt_SurvivalMin.Size = new System.Drawing.Size(40, 20);
+            this.txt_SurvivalMin.TabIndex = 14;
+            this.txt_SurvivalMin.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             // 
-            // numericUpDown5
+            // txt_SurvivalMax
             // 
-            this.numericUpDown5.Location = new System.Drawing.Point(178, 603);
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(40, 20);
-            this.numericUpDown5.TabIndex = 15;
+            this.txt_SurvivalMax.Location = new System.Drawing.Point(178, 603);
+            this.txt_SurvivalMax.Name = "txt_SurvivalMax";
+            this.txt_SurvivalMax.Size = new System.Drawing.Size(40, 20);
+            this.txt_SurvivalMax.TabIndex = 15;
+            this.txt_SurvivalMax.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             // 
             // label6
             // 
@@ -211,49 +231,50 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "->";
             // 
-            // checkBox2
+            // chk_IncludeSelf
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(110, 636);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(88, 17);
-            this.checkBox2.TabIndex = 18;
-            this.checkBox2.Text = "Include Sefl?";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.chk_IncludeSelf.AutoSize = true;
+            this.chk_IncludeSelf.Location = new System.Drawing.Point(110, 636);
+            this.chk_IncludeSelf.Name = "chk_IncludeSelf";
+            this.chk_IncludeSelf.Size = new System.Drawing.Size(88, 17);
+            this.chk_IncludeSelf.TabIndex = 18;
+            this.chk_IncludeSelf.Text = "Include Self?";
+            this.chk_IncludeSelf.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 665);
-            this.Controls.Add(this.checkBox2);
+            this.ClientSize = new System.Drawing.Size(577, 655);
+            this.Controls.Add(this.chk_IncludeSelf);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.numericUpDown5);
-            this.Controls.Add(this.numericUpDown4);
-            this.Controls.Add(this.numericUpDown3);
-            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.txt_SurvivalMax);
+            this.Controls.Add(this.txt_SurvivalMin);
+            this.Controls.Add(this.txt_BirthMax);
+            this.Controls.Add(this.txt_BirthMin);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.trackBar1);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.sldr_Speed);
+            this.Controls.Add(this.chk_DrawGrid);
             this.Controls.Add(this.lbl_Iterations);
-            this.Controls.Add(this.numericUpDown1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.txt_Iterations);
+            this.Controls.Add(this.btn_Stop);
+            this.Controls.Add(this.btn_Run);
+            this.Controls.Add(this.pix_Grid);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pix_Grid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_Iterations)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sldr_Speed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_BirthMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_BirthMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SurvivalMin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_SurvivalMax)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,25 +282,25 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.PictureBox pix_Grid;
+        private System.Windows.Forms.Button btn_Run;
+        private System.Windows.Forms.Button btn_Stop;
+        private System.Windows.Forms.NumericUpDown txt_Iterations;
         private System.Windows.Forms.Label lbl_Iterations;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.TrackBar trackBar1;
+        private System.Windows.Forms.CheckBox chk_DrawGrid;
+        private System.Windows.Forms.TrackBar sldr_Speed;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
-        private System.Windows.Forms.NumericUpDown numericUpDown3;
-        private System.Windows.Forms.NumericUpDown numericUpDown4;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.NumericUpDown txt_BirthMin;
+        private System.Windows.Forms.NumericUpDown txt_BirthMax;
+        private System.Windows.Forms.NumericUpDown txt_SurvivalMin;
+        private System.Windows.Forms.NumericUpDown txt_SurvivalMax;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox chk_IncludeSelf;
     }
 }
 

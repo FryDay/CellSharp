@@ -98,7 +98,7 @@ namespace CellSharp
                 for (int y = -1; y <= 1; y++)
                 {
                     if (CheckReproduction(currentPop, new Cell(thisCell.XPos + x, thisCell.YPos + y)))
-                        spawn.AddCell(new Cell(thisCell.XPos + x, thisCell.YPos + y);
+                        spawn.AddCell(new Cell(thisCell.XPos + x, thisCell.YPos + y));
                 }
             }
 
