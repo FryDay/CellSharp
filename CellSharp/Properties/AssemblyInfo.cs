@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("CellSharp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Mayville Engineering Company, Inc.")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("CellSharp")]
-[assembly: AssemblyCopyright("Copyright © Mayville Engineering Company, Inc. 2012")]
+[assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
