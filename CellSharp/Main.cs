@@ -9,27 +9,63 @@ namespace CellSharp
     {
         #region "Properties"
 
-        private Population LivingCells { get; set; }
         private Ruleset Rules;
-        private int CurrentIteration = 0;
+        private int MaxIterations;
+        public Population LivingCells { get; set; }
+        public int CurrentIteration { get; set; }
 
         #endregion
 
         #region "Constructors"
 
-        public Main(int birthMin, int birthMax, int survivalMin, int survivalMax)
+        public Main()
+        {
+            LivingCells = new Population();
+            CurrentIteration = 0;
+        }
+
+        public Main(int birthMin, int birthMax, int survivalMin, int survivalMax, int maxIterations, Population pop)
         {
             Rules = new Ruleset(birthMin, birthMax, survivalMin, survivalMax);
-
+            LivingCells = pop;
+            CurrentIteration = 0;
         }
 
         #endregion
 
         #region "Public"
 
-        public void Iterate()
+        //True = keep iterating, False = stop iterating
+        public bool Iterate()
         {
+            LivingCells = new Population(LivingCells.Run(Rules));
+            LivingCells.CheckForDuplicates();
+            LivingCells.UpdateCellCount();
+            //Update form
+            CurrentIteration++;
 
+            if (CurrentIteration >= MaxIterations)
+            {
+                CurrentIteration = 0;
+                return false;
+            }
+            else
+                return true;
+        }
+
+        //True = Added Cell, False = Removed Cell
+        public bool AddOrRemoveCell(Cell newCell)
+        {
+            if (newCell.CheckForDuplicates(LivingCells.CellList))
+            {
+                LivingCells.AddCell(newCell);
+                return true;
+            }
+            else
+            {
+                LivingCells.RemoveCell(newCell);
+                return false;
+            }
         }
 
         #endregion

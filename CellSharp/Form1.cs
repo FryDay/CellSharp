@@ -34,7 +34,7 @@ namespace CellSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //Program = new Main();
+            Program = new Main();
             Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
             pix_Grid.Image = Bmp;
             Gpx = Graphics.FromImage(Bmp);
@@ -43,14 +43,73 @@ namespace CellSharp
             DrawGrid();
         }
 
+        private void pix_Grid_MouseClick(object sender, MouseEventArgs e)
+        {
+            Cell newCell = new Cell(e.X / CellSize, e.Y / CellSize); //Todo: check that this works correctly
+
+            if (Program.AddOrRemoveCell(newCell)) //If cell is added
+            {
+                DrawCells(Program.LivingCells);
+            }
+            else
+            {
+                if (chk_DrawGrid.Checked)
+                    DrawGrid();
+                else
+                {
+                    Gpx.Clear(Color.White);
+                    pix_Grid.Refresh();
+                }
+
+                DrawCells(Program.LivingCells);
+            }
+        }
+
         private void btn_Run_Click(object sender, EventArgs e)
         {
-            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value);
+            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value, (int)txt_Iterations.Value, Program.LivingCells);
+            Program.LivingCells.UpdateCellCount();
+            btn_Run.Enabled = false;
+            btn_Stop.Enabled = true;
+
+            timer.Enabled = true;
+        }
+
+        private void btn_Stop_Click(object sender, EventArgs e)
+        {
+            timer.Enabled = false;
+            btn_Run.Enabled = true;
+            btn_Stop.Enabled = false;
+            Program.CurrentIteration = 0;
+        }
+
+        private void chk_DrawGrid_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateForm();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //Program.Iterate();
+            if (!Program.Iterate())
+            {
+                timer.Enabled = false;
+                btn_Run.Enabled = true;
+                btn_Stop.Enabled = false;
+            }
+        }
+
+        #endregion
+
+        #region "Public"
+
+        public void UpdateForm()
+        {
+            if (chk_DrawGrid.Checked)
+                DrawGrid();
+            else
+                Gpx.Clear(Color.White);
+
+            DrawCells(Program.LivingCells);
         }
 
         #endregion

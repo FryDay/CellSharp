@@ -71,6 +71,20 @@ namespace CellSharp
                 thisCell.CountNeighbors(CellList);
         }
 
+        public void CheckForDuplicates()
+        {
+            Population tempPop = new Population(this);
+
+            foreach (Cell thisCell in tempPop.CellList)
+            {
+                if (thisCell.CheckNumberDuplicates(tempPop.CellList) > 1)
+                {
+                    this.RemoveCell(thisCell);
+                    tempPop.Nullify(thisCell);
+                }
+            }
+        }
+
         #endregion
 
         #region "Private"
@@ -112,20 +126,6 @@ namespace CellSharp
             //Todo: MORE CODE - Refactor...no form data storage 
 
             return false;
-        }
-
-        private void CheckForDuplicates()
-        {
-            Population tempPop = new Population(this);
-
-            foreach (Cell thisCell in tempPop.CellList)
-            {
-                if (thisCell.CheckNumberDuplicates(tempPop.CellList) > 1)
-                {
-                    this.RemoveCell(thisCell);
-                    tempPop.Nullify(thisCell);
-                }
-            }
         }
 
         private void Nullify(Cell oldCell)

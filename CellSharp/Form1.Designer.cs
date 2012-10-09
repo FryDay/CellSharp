@@ -65,6 +65,7 @@
             this.pix_Grid.Size = new System.Drawing.Size(551, 551);
             this.pix_Grid.TabIndex = 0;
             this.pix_Grid.TabStop = false;
+            this.pix_Grid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pix_Grid_MouseClick);
             // 
             // btn_Run
             // 
@@ -84,10 +85,16 @@
             this.btn_Stop.TabIndex = 2;
             this.btn_Stop.Text = "Stop";
             this.btn_Stop.UseVisualStyleBackColor = true;
+            this.btn_Stop.Click += new System.EventHandler(this.btn_Stop_Click);
             // 
             // txt_Iterations
             // 
             this.txt_Iterations.Location = new System.Drawing.Point(508, 598);
+            this.txt_Iterations.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
             this.txt_Iterations.Name = "txt_Iterations";
             this.txt_Iterations.Size = new System.Drawing.Size(55, 20);
             this.txt_Iterations.TabIndex = 3;
@@ -112,6 +119,7 @@
             this.chk_DrawGrid.TabIndex = 5;
             this.chk_DrawGrid.Text = "Draw Grid?";
             this.chk_DrawGrid.UseVisualStyleBackColor = true;
+            this.chk_DrawGrid.CheckedChanged += new System.EventHandler(this.chk_DrawGrid_CheckedChanged);
             // 
             // sldr_Speed
             // 
@@ -171,6 +179,11 @@
             // txt_BirthMin
             // 
             this.txt_BirthMin.Location = new System.Drawing.Point(110, 577);
+            this.txt_BirthMin.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             this.txt_BirthMin.Name = "txt_BirthMin";
             this.txt_BirthMin.Size = new System.Drawing.Size(40, 20);
             this.txt_BirthMin.TabIndex = 12;
@@ -183,6 +196,11 @@
             // txt_BirthMax
             // 
             this.txt_BirthMax.Location = new System.Drawing.Point(178, 577);
+            this.txt_BirthMax.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             this.txt_BirthMax.Name = "txt_BirthMax";
             this.txt_BirthMax.Size = new System.Drawing.Size(40, 20);
             this.txt_BirthMax.TabIndex = 13;
@@ -195,6 +213,11 @@
             // txt_SurvivalMin
             // 
             this.txt_SurvivalMin.Location = new System.Drawing.Point(110, 603);
+            this.txt_SurvivalMin.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             this.txt_SurvivalMin.Name = "txt_SurvivalMin";
             this.txt_SurvivalMin.Size = new System.Drawing.Size(40, 20);
             this.txt_SurvivalMin.TabIndex = 14;
@@ -207,6 +230,11 @@
             // txt_SurvivalMax
             // 
             this.txt_SurvivalMax.Location = new System.Drawing.Point(178, 603);
+            this.txt_SurvivalMax.Maximum = new decimal(new int[] {
+            8,
+            0,
+            0,
+            0});
             this.txt_SurvivalMax.Name = "txt_SurvivalMax";
             this.txt_SurvivalMax.Size = new System.Drawing.Size(40, 20);
             this.txt_SurvivalMax.TabIndex = 15;
