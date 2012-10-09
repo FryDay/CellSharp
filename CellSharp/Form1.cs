@@ -11,8 +11,10 @@ namespace CellSharp
 {
     public partial class Form1 : Form
     {
+
         #region "Properties"
 
+        private Main Program;
         private Bitmap Bmp;
         private Graphics Gpx;
         private int CellSize = 5;
@@ -32,6 +34,7 @@ namespace CellSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //Program = new Main();
             Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
             pix_Grid.Image = Bmp;
             Gpx = Graphics.FromImage(Bmp);
@@ -40,10 +43,21 @@ namespace CellSharp
             DrawGrid();
         }
 
+        private void btn_Run_Click(object sender, EventArgs e)
+        {
+            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value);
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            //Program.Iterate();
+        }
+
         #endregion
 
         #region "Private"
 
+        //Draws grid lines
         private void DrawGrid()
         {
             Gpx.Clear(Color.White);
@@ -54,6 +68,16 @@ namespace CellSharp
             }
         }
 
+        //Draw cells
+        private void DrawCells(Population livingCells)
+        {
+            foreach (Cell cell in livingCells.CellList)
+                Gpx.FillRectangle(Brushes.Black, (cell.XPos * CellSize), (cell.YPos * CellSize), CellSize, CellSize);
+
+            pix_Grid.Refresh();
+        }
+
         #endregion
+
     }
 }

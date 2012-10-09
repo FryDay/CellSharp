@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pix_Grid = new System.Windows.Forms.PictureBox();
             this.btn_Run = new System.Windows.Forms.Button();
             this.btn_Stop = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.chk_IncludeSelf = new System.Windows.Forms.CheckBox();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pix_Grid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Iterations)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sldr_Speed)).BeginInit();
@@ -72,6 +74,7 @@
             this.btn_Run.TabIndex = 1;
             this.btn_Run.Text = "Run";
             this.btn_Run.UseVisualStyleBackColor = true;
+            this.btn_Run.Click += new System.EventHandler(this.btn_Run_Click);
             // 
             // btn_Stop
             // 
@@ -241,6 +244,11 @@
             this.chk_IncludeSelf.Text = "Include Self?";
             this.chk_IncludeSelf.UseVisualStyleBackColor = true;
             // 
+            // timer
+            // 
+            this.timer.Interval = 125;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +309,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chk_IncludeSelf;
+        private System.Windows.Forms.Timer timer;
     }
 }
 
