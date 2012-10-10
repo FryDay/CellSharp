@@ -9,15 +9,6 @@ using System.Windows.Forms;
 
 namespace CellSharp
 {
-    public delegate void UpdateGridDelagate();
-
-    public static class UpdateGrid
-    {
-        public static Form form;
-
-        public static event UpdateGridDelagate
-    }
-
     public partial class Form1 : Form
     {
 
@@ -41,9 +32,15 @@ namespace CellSharp
 
         #region "Events"
 
+        private void UpdateGridEvent(object sender, EventArgs e)
+        {
+            UpdateGrid();
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            Program = new Main();
+            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value, (int)txt_Iterations.Value);
+            Program.UpdateGridEvent += UpdateGridEvent;
             Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
             pix_Grid.Image = Bmp;
             Gpx = Graphics.FromImage(Bmp);
@@ -77,6 +74,7 @@ namespace CellSharp
         private void btn_Run_Click(object sender, EventArgs e)
         {
             Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value, (int)txt_Iterations.Value, Program.LivingCells);
+            Program.UpdateGridEvent += UpdateGridEvent;
             Program.LivingCells.UpdateCellCount();
             btn_Run.Enabled = false;
             btn_Stop.Enabled = true;
@@ -95,6 +93,22 @@ namespace CellSharp
         private void chk_DrawGrid_CheckedChanged(object sender, EventArgs e)
         {
             UpdateGrid();
+        }
+
+        private void sldr_Speed_Scroll(object sender, EventArgs e)
+        {
+            switch (sldr_Speed.Value)
+            {
+                case 0:
+                    timer.Interval = 250;
+                    break;
+                case 1:
+                    timer.Interval = 125;
+                    break;
+                case 3:
+                    timer.Interval = 50;
+                    break;
+            }
         }
 
         private void timer_Tick(object sender, EventArgs e)

@@ -7,6 +7,9 @@ namespace CellSharp
 {
     class Main
     {
+
+        public event EventHandler UpdateGridEvent;
+
         #region "Properties"
 
         private Ruleset Rules;
@@ -18,9 +21,10 @@ namespace CellSharp
 
         #region "Constructors"
 
-        public Main()
+        public Main(int birthMin, int birthMax, int survivalMin, int survivalMax, int maxIterations)
         {
-            LivingCells = new Population();
+            Rules = new Ruleset(birthMin, birthMax, survivalMin, survivalMax);
+            LivingCells = new Population(Rules);
             CurrentIteration = 0;
         }
 
@@ -42,10 +46,10 @@ namespace CellSharp
             LivingCells = new Population(LivingCells.Run(Rules));
             LivingCells.CheckForDuplicates();
             LivingCells.UpdateCellCount();
-            
+            UpdateGridEvent(this, EventArgs.Empty);
             CurrentIteration++;
 
-            if (CurrentIteration >= MaxIterations)
+            if (CurrentIteration >= MaxIterations && MaxIterations != 0)
             {
                 CurrentIteration = 0;
                 return false;

@@ -130,6 +130,7 @@
             this.sldr_Speed.Size = new System.Drawing.Size(104, 45);
             this.sldr_Speed.TabIndex = 6;
             this.sldr_Speed.Value = 1;
+            this.sldr_Speed.Scroll += new System.EventHandler(this.sldr_Speed_Scroll);
             // 
             // label1
             // 
@@ -302,7 +303,7 @@
             this.Controls.Add(this.btn_Run);
             this.Controls.Add(this.pix_Grid);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "CellSharp";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pix_Grid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_Iterations)).EndInit();

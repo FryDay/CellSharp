@@ -10,19 +10,22 @@ namespace CellSharp
         #region "Properties"
 
         public List<Cell> CellList { get; set; }
+        private Ruleset Rules;
 
         #endregion
 
         #region "Constructors"
 
-        public Population()
+        public Population(Ruleset rules)
         {
             CellList = new List<Cell>();
+            Rules = rules;
         }
 
         public Population(Population existingPopulation)
         {
             CellList = new List<Cell>();
+            Rules = existingPopulation.Rules;
             foreach (Cell thisCell in existingPopulation.CellList)
                 CellList.Add(new Cell(thisCell));
         }
@@ -30,6 +33,23 @@ namespace CellSharp
         #endregion
 
         #region "Public"
+
+                public Population Run(Ruleset rules)
+        {
+            Population tempPop = new Population(this);
+
+            for (int index = 0; index < CellList.Count; index++)
+            {
+                if (!Survive(CellList[index], rules))
+                    tempPop.RemoveCell(CellList[index]);
+            }
+
+            tempPop.UpdateCellCount();
+
+            Reproduction(tempPop);
+
+            return tempPop;
+        }
 
         public void AddCell(Cell newCell)
         {
@@ -46,23 +66,6 @@ namespace CellSharp
                     return;
                 }
             }
-        }
-
-        public Population Run(Ruleset rules)
-        {
-            Population tempPop = new Population(this);
-
-            for (int index = 0; index < CellList.Count; index++)
-            {
-                if (!Survive(CellList[index], rules))
-                    tempPop.RemoveCell(CellList[index]);
-            }
-
-            tempPop.UpdateCellCount();
-
-            Reproduction(tempPop);
-
-            return tempPop;
         }
 
         public void UpdateCellCount()
@@ -105,7 +108,7 @@ namespace CellSharp
 
         private Population MakeNewCells(Population currentPop, Cell thisCell)
         {
-            Population spawn = new Population();
+            Population spawn = new Population(this.Rules);
 
             for (int x = -1; x <= 1; x++)
             {
@@ -123,7 +126,8 @@ namespace CellSharp
         {
             thisCell.CountNeighbors(currentPop.CellList);
 
-            //Todo: MORE CODE - Refactor...no form data storage 
+            if (thisCell.NeighborCount >= Rules.BirthMinimum && thisCell.NeighborCount <= Rules.BirthMaximum)
+                return true;
 
             return false;
         }
