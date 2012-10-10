@@ -9,6 +9,15 @@ using System.Windows.Forms;
 
 namespace CellSharp
 {
+    public delegate void UpdateGridDelagate();
+
+    public static class UpdateGrid
+    {
+        public static Form form;
+
+        public static event UpdateGridDelagate
+    }
+
     public partial class Form1 : Form
     {
 
@@ -85,7 +94,7 @@ namespace CellSharp
 
         private void chk_DrawGrid_CheckedChanged(object sender, EventArgs e)
         {
-            UpdateForm();
+            UpdateGrid();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -102,7 +111,7 @@ namespace CellSharp
 
         #region "Public"
 
-        public void UpdateForm()
+        public void UpdateGrid()
         {
             if (chk_DrawGrid.Checked)
                 DrawGrid();

@@ -29,6 +29,7 @@ namespace CellSharp
             Rules = new Ruleset(birthMin, birthMax, survivalMin, survivalMax);
             LivingCells = pop;
             CurrentIteration = 0;
+            MaxIterations = maxIterations;
         }
 
         #endregion
@@ -41,7 +42,7 @@ namespace CellSharp
             LivingCells = new Population(LivingCells.Run(Rules));
             LivingCells.CheckForDuplicates();
             LivingCells.UpdateCellCount();
-            //Update form
+            
             CurrentIteration++;
 
             if (CurrentIteration >= MaxIterations)
