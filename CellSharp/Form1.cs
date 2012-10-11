@@ -18,6 +18,11 @@ namespace CellSharp
         private Bitmap Bmp;
         private Graphics Gpx;
         private int CellSize = 5;
+        private Color BackgroundColor;
+        private Color GridColor;
+        private Color CellColor;
+        private Pen GridPen;
+        private Brush CellBrush;
 
         #endregion
 
@@ -39,14 +44,14 @@ namespace CellSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value, (int)txt_Iterations.Value);
-            Program.UpdateGridEvent += UpdateGridEvent;
-            Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
-            pix_Grid.Image = Bmp;
-            Gpx = Graphics.FromImage(Bmp);
+            CellColor = Color.Black;
+            GridColor = Color.Black;
+            BackgroundColor = Color.White;
 
-            Gpx.Clear(Color.White);
-            DrawGrid();
+            CellBrush = new SolidBrush(CellColor);
+            GridPen = new Pen(GridColor);
+            
+            Initialize();
         }
 
         private void pix_Grid_MouseClick(object sender, MouseEventArgs e)
@@ -63,7 +68,7 @@ namespace CellSharp
                     DrawGrid();
                 else
                 {
-                    Gpx.Clear(Color.White);
+                    Gpx.Clear(BackgroundColor);
                     pix_Grid.Refresh();
                 }
 
@@ -105,7 +110,7 @@ namespace CellSharp
                 case 1:
                     timer.Interval = 125;
                     break;
-                case 3:
+                case 2:
                     timer.Interval = 50;
                     break;
             }
@@ -121,42 +126,94 @@ namespace CellSharp
             }
         }
 
-        #endregion
-
-        #region "Public"
-
-        public void UpdateGrid()
+        private void menu_Main_File_New_Click(object sender, EventArgs e)
         {
-            if (chk_DrawGrid.Checked)
-                DrawGrid();
-            else
-                Gpx.Clear(Color.White);
+            Initialize();
+        }
 
-            DrawCells(Program.LivingCells);
+        private void menu_Main_Tools_Colors_Click(object sender, EventArgs e)
+        {
+            ColorChangerForm colorForm = new ColorChangerForm(GridColor, CellColor, BackgroundColor);
+            switch (colorForm.ShowDialog(this))
+            {
+                case DialogResult.OK:
+                    GridColor = colorForm.GridColor;
+                    CellColor = colorForm.CellColor;
+                    BackgroundColor = colorForm.BackgroundColor;
+
+                    RefreshColors();
+                    break;
+                case DialogResult.Cancel:
+                    break;
+            }
         }
 
         #endregion
 
         #region "Private"
 
+        private void Initialize()
+        {
+            Program = new Main((int)(txt_BirthMin.Value), (int)txt_BirthMax.Value, (int)txt_SurvivalMin.Value, (int)txt_SurvivalMax.Value, (int)txt_Iterations.Value);
+
+            //GUI checks
+            chk_DrawGrid.Checked = true;
+            chk_IncludeSelf.Checked = false;
+            txt_Iterations.Value = 0;
+            txt_BirthMin.Value = 3;
+            txt_BirthMax.Value = 3;
+            txt_SurvivalMin.Value = 2;
+            txt_SurvivalMax.Value = 3;
+            sldr_Speed.Value = 1;
+            btn_Run.Enabled = true;
+            btn_Stop.Enabled = false;
+
+            //Grid Setup
+            Program.UpdateGridEvent += UpdateGridEvent; //Allows grid to be updated via Main class.
+            Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
+            pix_Grid.Image = Bmp;
+            Gpx = Graphics.FromImage(Bmp);
+            Gpx.Clear(BackgroundColor);
+            DrawGrid();
+        }
+
         //Draws grid lines
         private void DrawGrid()
         {
-            Gpx.Clear(Color.White);
+            Gpx.Clear(BackgroundColor);
             for (int index = 0; index <= 110; index++)
             {
-                Gpx.DrawLine(Pens.Black, 0, (index * CellSize), pix_Grid.Width, (index * CellSize));
-                Gpx.DrawLine(Pens.Black, (index * CellSize), 0, (index * CellSize), pix_Grid.Height);
+                Gpx.DrawLine(GridPen, 0, (index * CellSize), pix_Grid.Width, (index * CellSize));
+                Gpx.DrawLine(GridPen, (index * CellSize), 0, (index * CellSize), pix_Grid.Height);
             }
+        }
+
+        private void UpdateGrid()
+        {
+            if (chk_DrawGrid.Checked)
+                DrawGrid();
+            else
+                Gpx.Clear(BackgroundColor);
+
+            DrawCells(Program.LivingCells);
         }
 
         //Draw cells
         private void DrawCells(Population livingCells)
         {
             foreach (Cell cell in livingCells.CellList)
-                Gpx.FillRectangle(Brushes.Black, (cell.XPos * CellSize), (cell.YPos * CellSize), CellSize, CellSize);
-
+                Gpx.FillRectangle(CellBrush, (cell.XPos * CellSize), (cell.YPos * CellSize), CellSize, CellSize);
+            
             pix_Grid.Refresh();
+        }
+
+        private void RefreshColors()
+        {
+            CellBrush = new SolidBrush(CellColor);
+            GridPen = new Pen(GridColor);
+
+            DrawGrid();
+            DrawCells(Program.LivingCells);
         }
 
         #endregion
