@@ -105,7 +105,7 @@ namespace CellSharp
                 case 1:
                     timer.Interval = 125;
                     break;
-                case 3:
+                case 2:
                     timer.Interval = 50;
                     break;
             }
@@ -123,20 +123,6 @@ namespace CellSharp
 
         #endregion
 
-        #region "Public"
-
-        public void UpdateGrid()
-        {
-            if (chk_DrawGrid.Checked)
-                DrawGrid();
-            else
-                Gpx.Clear(Color.White);
-
-            DrawCells(Program.LivingCells);
-        }
-
-        #endregion
-
         #region "Private"
 
         //Draws grid lines
@@ -148,6 +134,16 @@ namespace CellSharp
                 Gpx.DrawLine(Pens.Black, 0, (index * CellSize), pix_Grid.Width, (index * CellSize));
                 Gpx.DrawLine(Pens.Black, (index * CellSize), 0, (index * CellSize), pix_Grid.Height);
             }
+        }
+
+        private void UpdateGrid()
+        {
+            if (chk_DrawGrid.Checked)
+                DrawGrid();
+            else
+                Gpx.Clear(Color.White);
+
+            DrawCells(Program.LivingCells);
         }
 
         //Draw cells
