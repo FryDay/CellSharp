@@ -323,6 +323,7 @@
             this.menu_Main_Tools_Colors.Name = "menu_Main_Tools_Colors";
             this.menu_Main_Tools_Colors.Size = new System.Drawing.Size(152, 22);
             this.menu_Main_Tools_Colors.Text = "Colors";
+            this.menu_Main_Tools_Colors.Click += new System.EventHandler(this.menu_Main_Tools_Colors_Click);
             // 
             // Form1
             // 

@@ -18,9 +18,11 @@ namespace CellSharp
         private Bitmap Bmp;
         private Graphics Gpx;
         private int CellSize = 5;
-        private Pen GridColor;
-        private Brush CellColor;
-        private Color BackColor;
+        private Color BackgroundColor;
+        private Color GridColor;
+        private Color CellColor;
+        private Pen GridPen;
+        private Brush CellBrush;
 
         #endregion
 
@@ -42,10 +44,13 @@ namespace CellSharp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            BackColor = Color.White;
-            CellColor = Brushes.Black;
-            GridColor = Pens.Black;
+            CellColor = Color.Black;
+            GridColor = Color.Black;
+            BackgroundColor = Color.White;
 
+            CellBrush = new SolidBrush(CellColor);
+            GridPen = new Pen(GridColor);
+            
             Initialize();
         }
 
@@ -63,7 +68,7 @@ namespace CellSharp
                     DrawGrid();
                 else
                 {
-                    Gpx.Clear(BackColor);
+                    Gpx.Clear(BackgroundColor);
                     pix_Grid.Refresh();
                 }
 
@@ -126,6 +131,23 @@ namespace CellSharp
             Initialize();
         }
 
+        private void menu_Main_Tools_Colors_Click(object sender, EventArgs e)
+        {
+            ColorChangerForm colorForm = new ColorChangerForm(GridColor, CellColor, BackgroundColor);
+            switch (colorForm.ShowDialog(this))
+            {
+                case DialogResult.OK:
+                    GridColor = colorForm.GridColor;
+                    CellColor = colorForm.CellColor;
+                    BackgroundColor = colorForm.BackgroundColor;
+
+                    RefreshColors();
+                    break;
+                case DialogResult.Cancel:
+                    break;
+            }
+        }
+
         #endregion
 
         #region "Private"
@@ -151,18 +173,18 @@ namespace CellSharp
             Bmp = new Bitmap(pix_Grid.Width, pix_Grid.Height);
             pix_Grid.Image = Bmp;
             Gpx = Graphics.FromImage(Bmp);
-            Gpx.Clear(BackColor);
+            Gpx.Clear(BackgroundColor);
             DrawGrid();
         }
 
         //Draws grid lines
         private void DrawGrid()
         {
-            Gpx.Clear(BackColor);
+            Gpx.Clear(BackgroundColor);
             for (int index = 0; index <= 110; index++)
             {
-                Gpx.DrawLine(GridColor, 0, (index * CellSize), pix_Grid.Width, (index * CellSize));
-                Gpx.DrawLine(GridColor, (index * CellSize), 0, (index * CellSize), pix_Grid.Height);
+                Gpx.DrawLine(GridPen, 0, (index * CellSize), pix_Grid.Width, (index * CellSize));
+                Gpx.DrawLine(GridPen, (index * CellSize), 0, (index * CellSize), pix_Grid.Height);
             }
         }
 
@@ -171,7 +193,7 @@ namespace CellSharp
             if (chk_DrawGrid.Checked)
                 DrawGrid();
             else
-                Gpx.Clear(BackColor);
+                Gpx.Clear(BackgroundColor);
 
             DrawCells(Program.LivingCells);
         }
@@ -180,9 +202,18 @@ namespace CellSharp
         private void DrawCells(Population livingCells)
         {
             foreach (Cell cell in livingCells.CellList)
-                Gpx.FillRectangle(CellColor, (cell.XPos * CellSize), (cell.YPos * CellSize), CellSize, CellSize);
+                Gpx.FillRectangle(CellBrush, (cell.XPos * CellSize), (cell.YPos * CellSize), CellSize, CellSize);
             
             pix_Grid.Refresh();
+        }
+
+        private void RefreshColors()
+        {
+            CellBrush = new SolidBrush(CellColor);
+            GridPen = new Pen(GridColor);
+
+            DrawGrid();
+            DrawCells(Program.LivingCells);
         }
 
         #endregion
