@@ -10,6 +10,7 @@ namespace CellSharp
         #region "Properties"
 
         public Point Location { get; set; }
+        public int HashCode { get; set; }
         public int NeighborCount { get; set; }
 
         #endregion
@@ -20,21 +21,23 @@ namespace CellSharp
         {
             NeighborCount = 0;
             Location = new Point(x, y);
+            HashCode = (Location.X * -1) ^ Location.Y; //This should assure unique keys.
         }
 
         public Cell(Cell existingCell)
         {
             Location = existingCell.Location;
             NeighborCount = existingCell.NeighborCount;
+            HashCode = existingCell.HashCode;
         }
 
         #endregion
 
         #region "Public"
 
-        public bool CheckForDuplicates(List<Cell> cells)
+        public bool CheckForDuplicates(Dictionary<int, Cell> cells)
         {
-            foreach (Cell cell in cells)
+            foreach (Cell cell in cells.Values)
             {
                 if (cell.Location.Equals(Location))
                     return false;
@@ -43,10 +46,10 @@ namespace CellSharp
             return true;
         }
 
-        public int CheckNumberDuplicates(List<Cell> cells)
+        public int CheckNumberDuplicates(Dictionary<int, Cell> cells)
         {
             int count = 0;
-            foreach (Cell cell in cells)
+            foreach (Cell cell in cells.Values)
             {
                 if (cell.Location.Equals(Location))
                     count += 1;
@@ -55,7 +58,7 @@ namespace CellSharp
             return count;
         }
 
-        public void CountNeighbors(List<Cell> cellList)
+        public void CountNeighbors(Dictionary<int, Cell> cellList)
         {
             NeighborCount = 0;
             if (Edge())

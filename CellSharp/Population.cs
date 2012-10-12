@@ -9,7 +9,7 @@ namespace CellSharp
     {
         #region "Properties"
 
-        public List<Cell> CellList { get; set; }
+        public Dictionary<int, Cell> CellList { get; set; }
         private Ruleset Rules;
 
         #endregion
@@ -18,13 +18,13 @@ namespace CellSharp
 
         public Population(Ruleset rules)
         {
-            CellList = new List<Cell>();
+            CellList = new Dictionary<int, Cell>;
             Rules = rules;
         }
 
         public Population(Population existingPopulation)
         {
-            CellList = new List<Cell>();
+            CellList = new Dictionary<int, Cell>();
             Rules = existingPopulation.Rules;
             foreach (Cell thisCell in existingPopulation.CellList)
                 CellList.Add(new Cell(thisCell));
@@ -34,7 +34,7 @@ namespace CellSharp
 
         #region "Public"
 
-                public Population Run(Ruleset rules)
+        public Population Run(Ruleset rules)
         {
             Population tempPop = new Population(this);
 
@@ -78,7 +78,7 @@ namespace CellSharp
         {
             Population tempPop = new Population(this);
 
-            foreach (Cell thisCell in tempPop.CellList)
+            foreach (Cell thisCell in tempPop.CellList.Values)
             {
                 if (thisCell.CheckNumberDuplicates(tempPop.CellList) > 1)
                 {
@@ -102,7 +102,7 @@ namespace CellSharp
 
         private void Reproduction(Population tempPopulation)
         {
-            foreach (Cell thisCell in this.CellList)
+            foreach (Cell thisCell in this.CellList.Values)
                 tempPopulation.CellList.AddRange(tempPopulation.MakeNewCells(this, thisCell).CellList);
         }
 
