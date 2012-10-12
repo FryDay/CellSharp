@@ -60,7 +60,7 @@ namespace CellSharp
         {
             for (int index = 0; index < CellList.Count; index++)
             {
-                if (oldCell.XPos == CellList[index].XPos && oldCell.YPos == CellList[index].YPos)
+                if (oldCell.Location.Equals(CellList[index].Location))
                 {
                     CellList.Remove(CellList[index]);
                     return;
@@ -114,8 +114,8 @@ namespace CellSharp
             {
                 for (int y = -1; y <= 1; y++)
                 {
-                    if (CheckReproduction(currentPop, new Cell(thisCell.XPos + x, thisCell.YPos + y)))
-                        spawn.AddCell(new Cell(thisCell.XPos + x, thisCell.YPos + y));
+                    if (CheckReproduction(currentPop, new Cell(thisCell.Location.X + x, thisCell.Location.Y + y)))
+                        spawn.AddCell(new Cell(thisCell.Location.X + x, thisCell.Location.Y + y));
                 }
             }
 
@@ -134,8 +134,8 @@ namespace CellSharp
 
         private void Nullify(Cell oldCell)
         {
-            oldCell.XPos = -1;
-            oldCell.YPos = -1;
+            oldCell.Location.X = -1;
+            oldCell.Location.Y = -1;
         }
 
         #endregion

@@ -9,25 +9,22 @@ namespace CellSharp
     {
         #region "Properties"
 
-        public int XPos { get; set; }
-        public int YPos { get; set; }
+        public Point Location { get; set; }
         public int NeighborCount { get; set; }
 
         #endregion
 
         #region "Constructors"
 
-        public Cell(int xPos, int yPos)
+        public Cell(int x, int y)
         {
             NeighborCount = 0;
-            XPos = xPos;
-            YPos = yPos;
+            Location = new Point(x, y);
         }
 
         public Cell(Cell existingCell)
         {
-            XPos = existingCell.XPos;
-            YPos = existingCell.YPos;
+            Location = existingCell.Location;
             NeighborCount = existingCell.NeighborCount;
         }
 
@@ -39,7 +36,7 @@ namespace CellSharp
         {
             foreach (Cell cell in cells)
             {
-                if (cell.XPos == XPos && cell.YPos == YPos)
+                if (cell.Location.Equals(Location))
                     return false;
             }
 
@@ -51,7 +48,7 @@ namespace CellSharp
             int count = 0;
             foreach (Cell cell in cells)
             {
-                if (cell.XPos == XPos && cell.YPos == YPos)
+                if (cell.Location.Equals(Location))
                     count += 1;
             }
 
@@ -83,7 +80,7 @@ namespace CellSharp
 
         private bool Edge()
         {
-            if (XPos == 120 || XPos == -20 || YPos == 120 || YPos == -20)
+            if (Location.X == 120 || Location.X == -20 || Location.Y == 120 || Location.Y == -20)
                 return true;
 
             return false;
@@ -91,27 +88,27 @@ namespace CellSharp
 
         private void CheckLeftRight(Cell cell)
         {
-            if(cell.YPos == YPos)
+            if(cell.Location.Y == Location.Y)
             {
-                if (cell.XPos == XPos - 1 || cell.XPos == XPos + 1)
+                if (cell.Location.X == Location.X - 1 || cell.Location.X == Location.X + 1)
                     NeighborCount++;
             }
         }
 
         private void CheckTop(Cell cell)
         {
-            if (cell.YPos == YPos - 1)
+            if (cell.Location.Y == Location.Y - 1)
             {
-                if (cell.XPos == XPos || cell.XPos == XPos + 1 || cell.XPos == XPos - 1)
+                if (cell.Location.X == Location.X || cell.Location.X == Location.X + 1 || cell.Location.X == Location.X - 1)
                     NeighborCount++;
             }
         }
 
         private void CheckBottom(Cell cell)
         {
-            if (cell.YPos == YPos + 1)
+            if (cell.Location.Y == Location.Y + 1)
             {
-                if (cell.XPos == XPos || cell.XPos == XPos + 1 || cell.XPos == XPos - 1)
+                if (cell.Location.X == Location.X || cell.Location.X == Location.X + 1 || cell.Location.X == Location.X - 1)
                     NeighborCount++;
             }
         }
