@@ -63,11 +63,11 @@ namespace CellSharp
             NeighborCount = 0;
             if (Edge())
             {
-                cellList.Remove(this);
+                cellList.Remove(this.HashCode);
             }
             else
             {
-                foreach (Cell cell in cellList)
+                foreach (Cell cell in cellList.Values)
                 {
                     CheckLeftRight(cell);
                     CheckBottom(cell);

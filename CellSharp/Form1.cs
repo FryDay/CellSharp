@@ -201,7 +201,7 @@ namespace CellSharp
         //Draw cells
         private void DrawCells(Population livingCells)
         {
-            foreach (Cell cell in livingCells.CellList)
+            foreach (Cell cell in livingCells.CellList.Values)
                 Gpx.FillRectangle(CellBrush, (cell.Location.X * CellSize), (cell.Location.Y * CellSize), CellSize, CellSize);
             
             pix_Grid.Refresh();

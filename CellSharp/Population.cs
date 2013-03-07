@@ -18,7 +18,7 @@ namespace CellSharp
 
         public Population(Ruleset rules)
         {
-            CellList = new Dictionary<int, Cell>;
+            CellList = new Dictionary<int, Cell>();
             Rules = rules;
         }
 
@@ -26,8 +26,12 @@ namespace CellSharp
         {
             CellList = new Dictionary<int, Cell>();
             Rules = existingPopulation.Rules;
-            foreach (Cell thisCell in existingPopulation.CellList)
-                CellList.Add(new Cell(thisCell));
+            CellList.AddRange(existingPopulation.CellList);
+            //foreach (Cell thisCell in existingPopulation.CellList.Values)
+            //{
+            //    Cell tempCell = new Cell(thisCell);
+            //    CellList.Add(thisCell.HashCode, thisCell);
+            //}
         }
 
         #endregion
@@ -38,14 +42,19 @@ namespace CellSharp
         {
             Population tempPop = new Population(this);
 
-            for (int index = 0; index < CellList.Count; index++)
+            //for (int index = 0; index < CellList.Count; index++)
+            //{
+            //    if (!Survive(CellList[index], rules))
+            //        tempPop.RemoveCell(CellList[index]);
+            //}
+            foreach (Cell thisCell in CellList.Values)
             {
-                if (!Survive(CellList[index], rules))
-                    tempPop.RemoveCell(CellList[index]);
+                if (!Survive(thisCell, rules))
+                    tempPop.RemoveCell(thisCell);
             }
 
             tempPop.UpdateCellCount();
-
+             
             Reproduction(tempPop);
 
             return tempPop;
@@ -53,16 +62,24 @@ namespace CellSharp
 
         public void AddCell(Cell newCell)
         {
-            CellList.Add(newCell);
+            CellList.Add(newCell.HashCode, newCell);
         }
 
         public void RemoveCell(Cell oldCell)
         {
-            for (int index = 0; index < CellList.Count; index++)
+            //for (int index = 0; index < CellList.Count; index++)
+            //{
+            //    if (oldCell.Location.Equals(CellList[index].Location))
+            //    {
+            //        CellList.Remove(index);
+            //        return;
+            //    }
+            //}
+            foreach (Cell thisCell in CellList.Values)
             {
-                if (oldCell.Location.Equals(CellList[index].Location))
+                if (oldCell.Location.Equals(thisCell.Location))
                 {
-                    CellList.Remove(CellList[index]);
+                    CellList.Remove(thisCell.HashCode);
                     return;
                 }
             }
@@ -70,7 +87,7 @@ namespace CellSharp
 
         public void UpdateCellCount()
         {
-            foreach (Cell thisCell in CellList)
+            foreach (Cell thisCell in CellList.Values)
                 thisCell.CountNeighbors(CellList);
         }
 
@@ -139,5 +156,6 @@ namespace CellSharp
         }
 
         #endregion
+
     }
 }
